@@ -13,7 +13,8 @@ import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 // Auth Imports
-import SignInCentered from "views/auth/signIn";
+import SignIn from "views/auth/signIn/SignIn";
+import SignUp from "views/auth/signIn/SignUp";
 
 const routes = [
   {
@@ -56,7 +57,16 @@ const routes = [
     icon: (
       <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
     ),
-    component: SignInCentered,
+    component: SignIn,
+  },
+  {
+    name: "Sign Up",
+    layout: "/auth",
+    path: "/sign-up",
+    icon: (
+      <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
+    ),
+    component: SignUp,
   },
 ];
 

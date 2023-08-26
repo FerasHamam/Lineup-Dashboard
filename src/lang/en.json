@@ -3,5 +3,20 @@
   "doctors": "Doctors",
   "patients": "Patients",
   "cases": "Cases",
-  "mainDashboard": "Main Dashboard"
+  "mainDashboard": "Main Dashboard",
+  "signIn.text1": "Sign In",
+  "signIn.text2": "Enter your email and password to sign in!",
+  "signIn.email": "Email",
+  "signIn.password": "Password",
+  "signIn.placeholder.email": "Enter your email",
+  "signIn.placeholder.password": "Enter your password",
+  "signIn.notRegistered": "Not registered yet?",
+  "signIn.createAccount": "Create an Account",
+  "signIn.emailError": "Email is not valid",
+  "signIn.passwordError": "Password must be at least of 8 Characters or numbers",
+  "signUp.text1": "Sign Up",
+  "signUp.loginInstead": "Or Login instead",
+  "signUp.haveAccount": "Already have an Account?",
+  "footerAuth.rights": "Lineup. All Rights Reserved.",
+  "auth.back": "Back to Lineup"
 }
