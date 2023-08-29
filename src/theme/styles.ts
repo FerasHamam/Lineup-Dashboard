@@ -86,12 +86,13 @@ export const globalStyles = {
         fontFamily: "DM Sans",
         letterSpacing: "-0.5px",
         "&::-webkit-scrollbar": {
-          width: "16px",
+          width: "10px",
           borderRadius: "32px",
-          backgroundColor: mode(`rgba(0, 0, 0, 0.05)`, `rgb(58, 53, 53)`),
+          backgroundColor: "#a8bbbf",
         },
         "&::-webkit-scrollbar-thumb": {
-          backgroundColor: mode(`rgba(0, 0, 0, 0.05)`, `rgb(0, 0, 0)`),
+          backgroundColor: `rgba(105, 96, 110, 0.425)`,
+          borderRadius: "32px",
         },
       },
       input: {

@@ -11,7 +11,7 @@ import {
 import Card from "components/card/Card";
 // Assets
 import { MdUpload } from "react-icons/md";
-import Dropzone from "views/admin/patient/components/Dropzone";
+import Dropzone from "views/admin/profile/components/Dropzone";
 
 export default function Upload(props: {
   used?: number;

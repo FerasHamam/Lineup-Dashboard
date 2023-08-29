@@ -1,18 +1,17 @@
 // Chakra imports
-import { Grid, List, Text, useColorModeValue } from "@chakra-ui/react";
-// Assets
-import Project1 from "assets/img/profile/Project1.png";
-import Project2 from "assets/img/profile/Project2.png";
-import Project3 from "assets/img/profile/Project3.png";
+import { Grid, List, Select, Text, useColorModeValue } from "@chakra-ui/react";
+
 // Custom components
 import Card from "components/card/Card";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { DoctorInfo } from "interfaces/DoctorInterfaces";
-import DoctorCard from "./DoctorCard";
-import { mode } from "@chakra-ui/theme-tools";
+import { useIntl } from "react-intl";
+import PatientCard from "./PatientCard";
+import DoctorCard from "./PatientCard";
 
-export default function Doctors(props: { [x: string]: any }) {
+export default function Patients(props: { [x: string]: any }) {
   const { ...rest } = props;
+  const intl = useIntl();
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -21,7 +20,7 @@ export default function Doctors(props: { [x: string]: any }) {
     "unset"
   );
 
-  const doctorDummy: DoctorInfo = {
+  const patientDummy: DoctorInfo = {
     firstName: "firstName",
     lastName: "lastName",
     email: "email",
@@ -31,7 +30,9 @@ export default function Doctors(props: { [x: string]: any }) {
 
   const cards: JSX.Element[] = [];
   for (let index = 0; index < 30; index++) {
-    cards.push(<DoctorCard doctorInfo={doctorDummy} boxShadow={cardShadow} />);
+    cards.push(
+      <PatientCard boxShadow={cardShadow} patientInfo={patientDummy} />
+    );
   }
 
   return (
@@ -49,7 +50,7 @@ export default function Doctors(props: { [x: string]: any }) {
           mt="10px"
           mb="10px"
         >
-          Doctors
+          {intl.formatMessage({ id: "patients" })}
         </Text>
         <List
           display={"flex"}
@@ -57,8 +58,8 @@ export default function Doctors(props: { [x: string]: any }) {
           justifyContent={"end"}
           w={"50%"}
         >
-          <SearchBar me="5" mt="10px" mb="10px" borderRadius="30px" />
-          <SearchBar mt="10px" mb="10px" borderRadius="30px" />
+          <Select w={"50%"} me="5" mt="10px" mb="10px" borderRadius="30px" />
+          <SearchBar w={"50%"} me="5" mt="10px" mb="10px" borderRadius="30px" />
         </List>
       </List>
       <hr />
@@ -74,10 +75,11 @@ export default function Doctors(props: { [x: string]: any }) {
           "&::-webkit-scrollbar": {
             width: "10px",
             borderRadius: "32px",
-            backgroundColor: mode(`rgba(0, 0, 0, 0.05)`, `rgb(58, 53, 53)`),
+            backgroundColor: "#a8bbbf",
           },
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: mode(`rgba(0, 0, 0, 0.05)`, `rgb(0, 0, 0)`),
+            backgroundColor: `rgba(105, 96, 110, 0.425)`,
+            borderRadius: "32px",
           },
         }}
       >

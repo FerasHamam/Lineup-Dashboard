@@ -10,12 +10,13 @@ import { LiaTeethSolid } from "react-icons/lia";
 // Admin Imports
 import MainDashboard from "views/admin/default";
 import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/patient";
+import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
 // Auth Imports
 import SignIn from "views/auth/signIn/SignIn";
 import SignUp from "views/auth/signIn/SignUp";
-import DoctorsOverview from "views/admin/Doctor";
+import DoctorsOverview from "views/admin/doctor";
+import PatientsOverview from "views/admin/patient";
 
 const routes = [
   {
@@ -47,9 +48,9 @@ const routes = [
   {
     name: "patients",
     layout: "/admin",
-    path: "/profile",
+    path: "/patients",
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
-    component: Profile,
+    component: PatientsOverview,
   },
   {
     name: "Sign In",
