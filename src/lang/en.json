@@ -18,5 +18,6 @@
   "signUp.loginInstead": "Or Login instead",
   "signUp.haveAccount": "Already have an Account?",
   "footerAuth.rights": "Lineup. All Rights Reserved.",
-  "auth.back": "Back to Lineup"
+  "auth.back": "Back to Lineup",
+  "footer.text": "Lineup. All Rights Reserved."
 }

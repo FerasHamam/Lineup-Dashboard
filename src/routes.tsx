@@ -1,4 +1,4 @@
-import { Icon } from "@chakra-ui/react";
+import { Icon, layout } from "@chakra-ui/react";
 import {
   MdPerson,
   MdHome,
@@ -17,19 +17,23 @@ import SignIn from "views/auth/signIn/SignIn";
 import SignUp from "views/auth/signIn/SignUp";
 import DoctorsOverview from "views/admin/doctor";
 import PatientsOverview from "views/admin/patient";
+import DoctorProfile from "views/admin/doctor/components/DoctorProfile";
+import { route as DoctorProfileRoute } from "./views/admin/doctor/components/DoctorProfile";
 
 const routes = [
   {
     name: "mainDashboard",
     layout: "/admin",
-    path: "/default",
+    path: `/admin/default`,
+    isMain: true,
     icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
     component: MainDashboard,
   },
   {
     name: "cases",
     layout: "/admin",
-    path: "/nft-marketplace",
+    path: `/admin/nft-marketplace`,
+    isMain: true,
     icon: (
       <Icon as={LiaTeethSolid} width="20px" height="20px" color="inherit" />
     ),
@@ -42,20 +46,23 @@ const routes = [
     icon: (
       <Icon as={MdHealthAndSafety} width="20px" height="20px" color="inherit" />
     ),
-    path: "/data-tables",
+    isMain: true,
+    path: `/admin/data-tables`,
     component: DoctorsOverview,
   },
   {
     name: "patients",
     layout: "/admin",
-    path: "/patients",
+    path: `/admin/patients`,
+    isMain: true,
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
     component: PatientsOverview,
   },
   {
     name: "Sign In",
     layout: "/auth",
-    path: "/sign-in",
+    path: `/auth/sign-in`,
+    isMain: false,
     icon: (
       <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
     ),
@@ -64,11 +71,22 @@ const routes = [
   {
     name: "Sign Up",
     layout: "/auth",
-    path: "/sign-up",
+    path: `/admin/sign-up`,
+    isMain: false,
     icon: (
       <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
     ),
     component: SignUp,
+  },
+  {
+    name: "Doctor Profile",
+    layout: "/admin",
+    path: DoctorProfileRoute,
+    isMain: false,
+    icon: (
+      <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
+    ),
+    component: DoctorProfile,
   },
 ];
 
