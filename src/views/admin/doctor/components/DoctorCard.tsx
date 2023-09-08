@@ -1,5 +1,6 @@
 // Chakra imports
 import {
+  Avatar,
   Box,
   Flex,
   Icon,
@@ -10,35 +11,37 @@ import {
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card";
-import { DoctorInfo } from "interfaces/DoctorInterfaces";
+import { Doctor } from "interfaces/DoctorInterfaces";
 // Assets
 import { MdArrowForward } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { generatePath, NavLink } from "react-router-dom";
 
 import profileImage from "../../../../assets/img/avatars/avatar6.png";
 import { route } from "./DoctorProfile";
 
 export default function DoctorCard(props: {
-  doctorInfo: DoctorInfo;
-  id: number;
+  doctor: Doctor;
   [x: string]: any;
 }) {
-  const { doctorInfo, id, ...rest } = props;
+  const { doctor, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
   const brandColor = useColorModeValue("brand.500", "white");
   const bg = useColorModeValue("white", "navy.700");
+  const shadow = useColorModeValue("4px 4px rgba(112, 144, 176, 0.12)", "none");
+
   return (
-    <NavLink to={route}>
-      <Card bg={bg} {...rest} p="14px">
+    <NavLink to={{ pathname: `${route}/${doctor.id}` }}>
+      <Card bg={bg} {...rest} p="14px" shadow={shadow}>
         <Flex align="center" direction={{ base: "column", md: "row" }}>
-          <Image
-            h="80px"
-            w="80px"
-            src={profileImage}
-            borderRadius="8px"
-            me="20px"
+          <Avatar
+            mx="auto"
+            src={doctor.profilePic && doctor.profilePic}
+            name={!doctor.profilePic && doctor.name && doctor.name}
+            h="87px"
+            w="87px"
+            borderColor={"transparent"}
           />
           <Box mt={{ base: "10px", md: "0" }}>
             <Text
@@ -47,7 +50,7 @@ export default function DoctorCard(props: {
               fontSize="md"
               mb="4px"
             >
-              {doctorInfo.firstName} {doctorInfo.lastName}
+              {doctor.name}
             </Text>
             <Text
               fontWeight="500"
@@ -55,7 +58,7 @@ export default function DoctorCard(props: {
               fontSize="sm"
               me="4px"
             >
-              •{doctorInfo.Speciality}
+              {doctor.email}
             </Text>
             <Text
               fontWeight="500"
@@ -63,7 +66,7 @@ export default function DoctorCard(props: {
               fontSize="sm"
               me="4px"
             >
-              •{doctorInfo.type}
+              {`${doctor.location}, ${doctor.address}`}
             </Text>
           </Box>
           <Link

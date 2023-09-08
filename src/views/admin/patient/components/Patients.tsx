@@ -4,7 +4,6 @@ import { Grid, List, Select, Text, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
-import { DoctorInfo } from "interfaces/DoctorInterfaces";
 import { useIntl } from "react-intl";
 import PatientCard from "./PatientCard";
 import DoctorCard from "./PatientCard";
@@ -20,19 +19,11 @@ export default function Patients(props: { [x: string]: any }) {
     "unset"
   );
 
-  const patientDummy: DoctorInfo = {
-    firstName: "firstName",
-    lastName: "lastName",
-    email: "email",
-    Speciality: "Speciality",
-    type: "type",
-  };
-
   const cards: JSX.Element[] = [];
   for (let index = 0; index < 30; index++) {
-    cards.push(
-      <PatientCard boxShadow={cardShadow} patientInfo={patientDummy} />
-    );
+    // cards.push(
+    //   <PatientCard boxShadow={cardShadow} patientInfo={patientDummy} />
+    // );
   }
 
   return (

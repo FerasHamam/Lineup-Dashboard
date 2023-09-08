@@ -10,14 +10,14 @@ import {
 } from "@chakra-ui/react";
 // Custom components
 import Card from "components/card/Card";
-import { PatientInfo } from "interfaces/PatientInterfaces";
+import { Patient } from "interfaces/PatientInterfaces";
 // Assets
 import { MdArrowForward } from "react-icons/md";
 
 import profileImage from "../../../../assets/img/avatars/avatar6.png";
 
 export default function PatientCard(props: {
-  patientInfo: PatientInfo;
+  patientInfo: Patient;
   [x: string]: any;
 }) {
   const { patientInfo, ...rest } = props;
@@ -43,7 +43,7 @@ export default function PatientCard(props: {
             fontSize="md"
             mb="4px"
           >
-            {patientInfo.firstName} {patientInfo.lastName}
+            {patientInfo.name}
           </Text>
           <Text
             fontWeight="500"
@@ -51,7 +51,7 @@ export default function PatientCard(props: {
             fontSize="sm"
             me="4px"
           >
-            •{patientInfo.Speciality}
+            •{patientInfo.email}
           </Text>
           <Text
             fontWeight="500"

@@ -81,7 +81,7 @@ const routes = [
   {
     name: "Doctor Profile",
     layout: "/admin",
-    path: DoctorProfileRoute,
+    path: `${DoctorProfileRoute}/:id`,
     isMain: false,
     icon: (
       <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />

@@ -1,16 +1,19 @@
 // Chakra imports
 import { Grid, List, Select, Text, useColorModeValue } from "@chakra-ui/react";
+import { getDoctors } from "apis/getDoctors.api";
 
 // Custom components
 import Card from "components/card/Card";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
-import { DoctorInfo } from "interfaces/DoctorInterfaces";
+import { Doctor } from "interfaces/DoctorInterfaces";
+import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import Avatars from "views/admin/common/Avatars";
 import DoctorCard from "./DoctorCard";
 
 export default function Doctors(props: { [x: string]: any }) {
   const { ...rest } = props;
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
   const intl = useIntl();
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -20,19 +23,17 @@ export default function Doctors(props: { [x: string]: any }) {
     "unset"
   );
 
-  const doctorDummy: DoctorInfo = {
-    firstName: "firstName",
-    lastName: "lastName",
-    email: "email",
-    Speciality: "Speciality",
-    type: "type",
-  };
+  useEffect(() => {
+    getDoctors().then((res) => {
+      setDoctors(res.data);
+    });
+  }, []);
 
   const cards: JSX.Element[] = [];
   for (let index = 0; index < 30; index++) {
-    cards.push(
-      <DoctorCard doctorInfo={doctorDummy} boxShadow={cardShadow} id={index} />
-    );
+    // cards.push(
+    //   <DoctorCard doctorInfo={doctorDummy} boxShadow={cardShadow} id={index} />
+    // );
   }
 
   return (
@@ -100,7 +101,9 @@ export default function Doctors(props: { [x: string]: any }) {
             }}
             gap={{ base: "20px", xl: "20px" }}
           >
-            {cards.map((card) => card)}
+            {doctors.map((doctor, index) => {
+              return <DoctorCard doctor={doctor} />;
+            })}
           </Grid>
         </List>
       </Card>

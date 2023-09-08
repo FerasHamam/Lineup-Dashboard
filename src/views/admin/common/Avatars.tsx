@@ -8,20 +8,13 @@ import {
 } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
-import { DoctorInfo } from "interfaces/DoctorInterfaces";
+import { Doctor } from "interfaces/DoctorInterfaces";
 import DoctorCard from "../doctor/components/DoctorCard";
 
-function Avatars(props: { [x: string]: any }) {
-  const { ...rest } = props;
+function Avatars(props: { name: string; [x: string]: any }) {
+  const { name, ...rest } = props;
 
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const doctorDummy: DoctorInfo = {
-    firstName: "firstName",
-    lastName: "lastName",
-    email: "email",
-    Speciality: "Speciality",
-    type: "type",
-  };
 
   const cards: JSX.Element[] = [];
   for (let index = 0; index < 5; index++) {
@@ -54,7 +47,7 @@ function Avatars(props: { [x: string]: any }) {
     );
   }
   return (
-    <Card mb={{ base: "0px", "2xl": "20px" }} {...rest} width={"30vw"}>
+    <Card mb={{ base: "0px", "2xl": "20px" }} {...rest} width={"100%"}>
       <List
         display={"flex"}
         flexDirection={"row"}
@@ -68,7 +61,7 @@ function Avatars(props: { [x: string]: any }) {
           mt="10px"
           mb="10px"
         >
-          (name)'s patients
+          {name}'s patients
         </Text>
         <List
           display={"flex"}

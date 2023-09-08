@@ -2,7 +2,6 @@
 import { Avatar, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card";
 import { useIntl } from "react-intl";
-import Avatars from "views/admin/common/Avatars";
 
 export default function Banner(props: {
   banner: string;
@@ -80,7 +79,6 @@ export default function Banner(props: {
           </Flex>
         </Flex>
       </Card>
-      <Avatars />
     </>
   );
 }

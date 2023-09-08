@@ -1,0 +1,109 @@
+{
+  "patients": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phoneNumber": "+1-123-456-7890",
+      "profilePic": "https://example.com/john_doe_profile.jpg",
+      "role": "Patient",
+      "gender": "Male",
+      "age": 30,
+      "password": "password123",
+      "location": "New York",
+      "address": "123 Main St",
+      "cases": [
+        {
+          "id": 1,
+          "patientID": 1,
+          "doctorID": 2,
+          "status": "Open",
+          "numOfSteps": 3,
+          "files": [
+            {
+              "id": 1,
+              "uri": "https://example.com/case1_file1.pdf"
+            },
+            {
+              "id": 2,
+              "uri": "https://example.com/case1_file2.jpg"
+            }
+          ]
+        }
+      ],
+      "fromEcommerce": false,
+      "type": "Regular",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "phoneNumber": "+1-987-654-3210",
+      "profilePic": "https://example.com/jane_smith_profile.jpg",
+      "role": "Patient",
+      "gender": "Female",
+      "age": 25,
+      "password": "securepass",
+      "location": "Los Angeles",
+      "address": "456 Elm St",
+      "cases": [],
+      "fromEcommerce": true,
+      "type": "VIP",
+      "status": "Active"
+    }
+  ],
+  "doctors": [
+    {
+      "id": "1",
+      "name": "Dr. David Johnson",
+      "email": "dr.johnson@example.com",
+      "phoneNumber": "+1-555-123-4567",
+      "profilePic": "https://example.com/dr_johnson_profile.jpg",
+      "role": "Doctor",
+      "gender": "Male",
+      "age": 40,
+      "password": "doctorpass",
+      "location": "Chicago",
+      "address": "789 Oak St",
+      "isConsultant": true,
+      "patients": [
+        {
+          "id": "1",
+          "name": "John Doe"
+        }
+      ],
+      "cases": [
+        {
+          "id": 1,
+          "patientID": 1,
+          "doctorID": 1,
+          "status": "Open",
+          "numOfSteps": 2,
+          "files": [
+            {
+              "id": 3,
+              "uri": "https://example.com/case1_file3.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Dr. Emily Williams",
+      "email": "dr.emily@example.com",
+      "phoneNumber": "+1-555-987-6543",
+      "profilePic": "https://example.com/dr_emily_profile.jpg",
+      "role": "Doctor",
+      "gender": "Female",
+      "age": 35,
+      "password": "docpass123",
+      "location": "San Francisco",
+      "address": "101 Pine St",
+      "isConsultant": false,
+      "patients": [],
+      "cases": []
+    }
+  ]
+}

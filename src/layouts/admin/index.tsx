@@ -56,7 +56,12 @@ export default function Dashboard(props: { [x: string]: any }) {
     return routes.map((route: RoutesType, key: any) => {
       if (route.layout === "/admin") {
         return (
-          <Route path={route.path} component={route.component} key={key} />
+          <Route
+            exact
+            path={route.path}
+            component={route.component}
+            key={key}
+          />
         );
       } else {
         return null;
