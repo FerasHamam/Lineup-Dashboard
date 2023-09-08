@@ -19,5 +19,6 @@
   "signUp.haveAccount": "Already have an Account?",
   "footerAuth.rights": "Lineup. All Rights Reserved.",
   "auth.back": "Back to Lineup",
-  "footer.text": "Lineup. All Rights Reserved."
+  "footer.text": "Lineup. All Rights Reserved.",
+  "doctors.noDoctors": "No doctors yet"
 }

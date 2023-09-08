@@ -1,40 +1,53 @@
 // Chakra imports
-import { Grid, List, Select, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Grid,
+  List,
+  Select,
+  Spinner,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { getDoctors } from "apis/getDoctors.api";
 
 // Custom components
 import Card from "components/card/Card";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Doctor } from "interfaces/DoctorInterfaces";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
-import Avatars from "views/admin/common/Avatars";
 import DoctorCard from "./DoctorCard";
 
 export default function Doctors(props: { [x: string]: any }) {
   const { ...rest } = props;
   const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [loader, setLoader] = useState<boolean>(true);
   const intl = useIntl();
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
-  const textColorSecondary = "gray.400";
-  const cardShadow = useColorModeValue(
-    "18px 18px 18px 18px rgba(112, 144, 176, 0.12)",
-    "unset"
-  );
 
   useEffect(() => {
     getDoctors().then((res) => {
       setDoctors(res.data);
+      setLoader(false);
     });
   }, []);
 
-  const cards: JSX.Element[] = [];
-  for (let index = 0; index < 30; index++) {
-    // cards.push(
-    //   <DoctorCard doctorInfo={doctorDummy} boxShadow={cardShadow} id={index} />
-    // );
-  }
+  const Loader = useMemo<JSX.Element>(() => {
+    if (loader) {
+      return (
+        <>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="navy.500"
+            size="xl"
+          />
+        </>
+      );
+    }
+    return <></>;
+  }, [loader]);
 
   return (
     <>
@@ -77,8 +90,14 @@ export default function Doctors(props: { [x: string]: any }) {
           padding={"1rem"}
           display={"flex"}
           flexDirection={"column"}
-          alignItems={"stretch"}
-          justifyContent={"space-between"}
+          alignItems={
+            doctors && doctors.length > 0 && !loader ? "stretch" : "center"
+          }
+          justifyContent={
+            doctors && doctors.length > 0 && !loader
+              ? "space-between"
+              : "center"
+          }
           sx={{
             "&::-webkit-scrollbar": {
               width: "10px",
@@ -91,6 +110,20 @@ export default function Doctors(props: { [x: string]: any }) {
             },
           }}
         >
+          {!loader && doctors.length === 0 && (
+            <>
+              <Text
+                color={textColorPrimary}
+                fontWeight="bold"
+                fontSize="4xl"
+                mt="10px"
+                mb="10px"
+              >
+                {intl.formatMessage({ id: "doctors.noDoctors" })}
+              </Text>
+            </>
+          )}
+          {Loader}
           <Grid
             templateColumns={{
               md: "repeat(3, 1fr)",
@@ -101,9 +134,11 @@ export default function Doctors(props: { [x: string]: any }) {
             }}
             gap={{ base: "20px", xl: "20px" }}
           >
-            {doctors.map((doctor, index) => {
-              return <DoctorCard doctor={doctor} />;
-            })}
+            {!loader &&
+              doctors &&
+              doctors.map((doctor, index) => {
+                return <DoctorCard doctor={doctor} />;
+              })}
           </Grid>
         </List>
       </Card>
