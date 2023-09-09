@@ -2,10 +2,10 @@
 import {
   Grid,
   List,
-  Select,
   Spinner,
   Text,
   useColorModeValue,
+  Select,
 } from "@chakra-ui/react";
 import { getDoctors } from "apis/getDoctors.api";
 
@@ -13,14 +13,23 @@ import { getDoctors } from "apis/getDoctors.api";
 import Card from "components/card/Card";
 import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Doctor } from "interfaces/DoctorInterfaces";
-import { useEffect, useMemo, useState } from "react";
+import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
 import DoctorCard from "./DoctorCard";
+enum DoctorsOptions {
+  ALL = "All",
+  CONSULTANT = "Consultant",
+  NON_CONSULTANT = "Non Consultant",
+}
 
 export default function Doctors(props: { [x: string]: any }) {
   const { ...rest } = props;
   const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [filteredDoctors, setFilteredDoctors] = useState<Doctor[]>([]);
+  const [selectedDoctorOption, setSelectedDoctorOption] =
+    useState<DoctorsOptions>(DoctorsOptions.ALL);
   const [loader, setLoader] = useState<boolean>(true);
+  const [search, setSearch] = useState("");
   const intl = useIntl();
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
@@ -31,6 +40,51 @@ export default function Doctors(props: { [x: string]: any }) {
       setLoader(false);
     });
   }, []);
+
+  useEffect(() => {
+    const loweredSearch = search.toLowerCase();
+    console.log(loweredSearch);
+    if (doctors) {
+      setFilteredDoctors(
+        doctors.filter((doctor) => {
+          let isDoctorIncluded: boolean = false;
+          switch (selectedDoctorOption) {
+            case DoctorsOptions.CONSULTANT:
+              isDoctorIncluded = doctor.isConsultant;
+              break;
+            case DoctorsOptions.NON_CONSULTANT:
+              isDoctorIncluded = !doctor.isConsultant;
+              break;
+            default:
+              isDoctorIncluded = true;
+          }
+          return (
+            (doctor.name.toLowerCase().includes(loweredSearch) ||
+              doctor.address.toLowerCase().includes(loweredSearch) ||
+              doctor.location.toLowerCase().includes(loweredSearch) ||
+              doctor.email.toLowerCase().includes(loweredSearch)) &&
+            isDoctorIncluded
+          );
+        })
+      );
+      return;
+    }
+    setFilteredDoctors([]);
+  }, [doctors, search, selectedDoctorOption]);
+
+  const onChangeDoctorOptionHandler = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedDoctorOption(e.target.value as DoctorsOptions);
+  };
+
+  const onChangeSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e && e.target && e.target.value) {
+      setSearch(e.target.value);
+      return;
+    }
+    setSearch("");
+  };
 
   const Loader = useMemo<JSX.Element>(() => {
     if (loader) {
@@ -73,13 +127,29 @@ export default function Doctors(props: { [x: string]: any }) {
             justifyContent={"end"}
             w={"50%"}
           >
-            <Select w={"50%"} me="5" mt="10px" mb="10px" borderRadius="30px" />
+            <Select
+              w={"50%"}
+              me="5"
+              mt="10px"
+              mb="10px"
+              value={selectedDoctorOption}
+              onChange={onChangeDoctorOptionHandler}
+            >
+              <option value={DoctorsOptions.ALL}>{DoctorsOptions.ALL}</option>
+              <option value={DoctorsOptions.CONSULTANT}>
+                {DoctorsOptions.CONSULTANT}
+              </option>
+              <option value={DoctorsOptions.NON_CONSULTANT}>
+                {DoctorsOptions.NON_CONSULTANT}
+              </option>
+            </Select>
             <SearchBar
               w={"50%"}
               me="5"
               mt="10px"
               mb="10px"
               borderRadius="30px"
+              onChange={onChangeSearchHandler}
             />
           </List>
         </List>
@@ -136,7 +206,7 @@ export default function Doctors(props: { [x: string]: any }) {
           >
             {!loader &&
               doctors &&
-              doctors.map((doctor, index) => {
+              filteredDoctors.map((doctor, index) => {
                 return <DoctorCard doctor={doctor} />;
               })}
           </Grid>

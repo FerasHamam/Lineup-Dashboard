@@ -30,7 +30,7 @@ export default function DoctorCard(props: {
   const brandColor = useColorModeValue("brand.500", "white");
   const bg = useColorModeValue("white", "navy.700");
   const shadow = useColorModeValue("4px 4px rgba(112, 144, 176, 0.12)", "none");
-
+  const borderColor = doctor.isConsultant ? "#8978f5" : "transparent";
   return (
     <NavLink to={{ pathname: `${route}/${doctor.id}` }}>
       <Card bg={bg} {...rest} p="14px" shadow={shadow}>
@@ -41,7 +41,7 @@ export default function DoctorCard(props: {
             name={!doctor.profilePic && doctor.name && doctor.name}
             h="87px"
             w="87px"
-            borderColor={"transparent"}
+            border={`4px solid ${borderColor}`}
           />
           <Box mt={{ base: "10px", md: "0" }}>
             <Text
