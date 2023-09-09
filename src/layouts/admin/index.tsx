@@ -54,7 +54,7 @@ export default function Dashboard(props: { [x: string]: any }) {
   };
   const getRoutes = (routes: RoutesType[]): any => {
     return routes.map((route: RoutesType, key: any) => {
-      if (route.layout === "/admin") {
+      if (route.layout.includes("/admin")) {
         return (
           <Route
             exact

@@ -20,5 +20,21 @@
   "footerAuth.rights": "Lineup. All Rights Reserved.",
   "auth.back": "Back to Lineup",
   "footer.text": "Lineup. All Rights Reserved.",
-  "doctors.noDoctors": "No doctors yet"
+  "doctors.noDoctors": "No doctors yet",
+  "contactInfo.title": "Contact Info",
+  "contactInfo.email": "Email",
+  "contactInfo.phone": "Phone Number",
+  "contactInfo.address": "Address",
+  "contactInfo.location": "Location",
+  "generalInfo.title": "General Info",
+  "generalInfo.gender": "Gender",
+  "generalInfo.age": "Age",
+  "generalInfo.consultant": "Consultant",
+  "generalInfo.isConsultant": "Yes",
+  "generalInfo.notConsultant": "No",
+  "generalInfo.type": "Type",
+  "generalInfo.status": "Status",
+  "consultant": "Consultant",
+  "nonConsultant": "Non Consultant",
+  "patients.noPatients": "No patients yet"
 }

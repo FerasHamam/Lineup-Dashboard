@@ -6,34 +6,16 @@
       "email": "john.doe@example.com",
       "phoneNumber": "+1-123-456-7890",
       "profilePic": "https://example.com/john_doe_profile.jpg",
-      "role": "Patient",
+      "role": "PATIENT",
       "gender": "Male",
       "age": 30,
       "password": "password123",
       "location": "New York",
       "address": "123 Main St",
-      "cases": [
-        {
-          "id": 1,
-          "patientID": 1,
-          "doctorID": 2,
-          "status": "Open",
-          "numOfSteps": 3,
-          "files": [
-            {
-              "id": 1,
-              "uri": "https://example.com/case1_file1.pdf"
-            },
-            {
-              "id": 2,
-              "uri": "https://example.com/case1_file2.jpg"
-            }
-          ]
-        }
-      ],
+      "cases": [],
       "fromEcommerce": false,
-      "type": "Regular",
-      "status": "Active"
+      "type": "WEBSITE",
+      "status": "REGISTERED"
     },
     {
       "id": "2",
@@ -41,7 +23,7 @@
       "email": "jane.smith@example.com",
       "phoneNumber": "+1-987-654-3210",
       "profilePic": "https://example.com/jane_smith_profile.jpg",
-      "role": "Patient",
+      "role": "PATIENT",
       "gender": "Female",
       "age": 25,
       "password": "securepass",
@@ -49,61 +31,317 @@
       "address": "456 Elm St",
       "cases": [],
       "fromEcommerce": true,
-      "type": "VIP",
-      "status": "Active"
+      "type": "FROM_DOC",
+      "status": "WAITING_FOR_IK"
+    },
+    {
+      "id": "3",
+      "name": "Michael Johnson",
+      "email": "michael.j@example.com",
+      "phoneNumber": "+1-555-123-4567",
+      "profilePic": "https://example.com/michael_j_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Male",
+      "age": 45,
+      "password": "michaelpass",
+      "location": "Chicago",
+      "address": "789 Oak St",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "WEBSITE",
+      "status": "UNDER_TREATMENT"
+    },
+    {
+      "id": "4",
+      "name": "Emily Wilson",
+      "email": "emily.w@example.com",
+      "phoneNumber": "+1-555-987-6543",
+      "profilePic": "https://example.com/emily_w_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Female",
+      "age": 35,
+      "password": "emilypass123",
+      "location": "San Francisco",
+      "address": "101 Pine St",
+      "cases": [],
+      "fromEcommerce": true,
+      "type": "FROM_DOC",
+      "status": "AWAITING_REVIEW"
+    },
+    {
+      "id": "5",
+      "name": "David Lee",
+      "email": "david.lee@example.com",
+      "phoneNumber": "+1-888-555-1234",
+      "profilePic": "https://example.com/david_lee_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Male",
+      "age": 28,
+      "password": "lee1234",
+      "location": "Houston",
+      "address": "555 Maple Ave",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "WEBSITE",
+      "status": "FINISHED"
+    },
+    {
+      "id": "6",
+      "name": "Alice Johnson",
+      "email": "alice.j@example.com",
+      "phoneNumber": "+1-111-222-3333",
+      "profilePic": "https://example.com/alice_j_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Female",
+      "age": 33,
+      "password": "alicepass",
+      "location": "New York",
+      "address": "789 Broadway",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "WEBSITE",
+      "status": "REGISTERED"
+    },
+    {
+      "id": "7",
+      "name": "Bob Johnson",
+      "email": "bob.j@example.com",
+      "phoneNumber": "+1-222-333-4444",
+      "profilePic": "https://example.com/bob_j_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Male",
+      "age": 55,
+      "password": "bobpass",
+      "location": "Los Angeles",
+      "address": "456 Vine St",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "WEBSITE",
+      "status": "WAITING_FOR_IK"
+    },
+    {
+      "id": "8",
+      "name": "Carol Wilson",
+      "email": "carol.w@example.com",
+      "phoneNumber": "+1-333-444-5555",
+      "profilePic": "https://example.com/carol_w_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Female",
+      "age": 40,
+      "password": "carolpass",
+      "location": "Chicago",
+      "address": "123 Oak St",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "FROM_DOC",
+      "status": "UNDER_TREATMENT"
+    },
+    {
+      "id": "9",
+      "name": "Daniel Lee",
+      "email": "daniel.lee@example.com",
+      "phoneNumber": "+1-444-555-6666",
+      "profilePic": "https://example.com/daniel_lee_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Male",
+      "age": 45,
+      "password": "danielpass",
+      "location": "San Francisco",
+      "address": "789 Pine St",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "WEBSITE",
+      "status": "AWAITING_REVIEW"
+    },
+    {
+      "id": "10",
+      "name": "Eva Smith",
+      "email": "eva.s@example.com",
+      "phoneNumber": "+1-555-666-7777",
+      "profilePic": "https://example.com/eva_s_profile.jpg",
+      "role": "PATIENT",
+      "gender": "Female",
+      "age": 29,
+      "password": "evapass",
+      "location": "Houston",
+      "address": "555 Elm St",
+      "cases": [],
+      "fromEcommerce": false,
+      "type": "WEBSITE",
+      "status": "FINISHED"
     }
   ],
   "doctors": [
     {
-      "id": "1",
-      "name": "Dr. David Johnson",
-      "email": "dr.johnson@example.com",
-      "phoneNumber": "+1-555-123-4567",
-      "profilePic": "https://example.com/dr_johnson_profile.jpg",
-      "role": "Doctor",
-      "gender": "Male",
+      "id": "11",
+      "name": "Dr. Amanda Davis",
+      "email": "amanda.d@example.com",
+      "phoneNumber": "+1-111-222-3333",
+      "profilePic": "https://example.com/amanda_d_profile.jpg",
+      "role": "DOCTOR",
+      "gender": "Female",
       "age": 40,
       "password": "doctorpass",
-      "location": "Chicago",
-      "address": "789 Oak St",
+      "location": "New York",
+      "address": "789 Broadway",
       "isConsultant": true,
       "patients": [
         {
-          "id": "1",
-          "name": "John Doe"
+          "id": "9",
+          "name": "Daniel Lee",
+          "email": "daniel.lee@example.com",
+          "phoneNumber": "+1-444-555-6666",
+          "profilePic": "https://example.com/daniel_lee_profile.jpg",
+          "role": "PATIENT",
+          "gender": "Male",
+          "age": 45,
+          "password": "danielpass",
+          "location": "San Francisco",
+          "address": "789 Pine St",
+          "cases": [],
+          "fromEcommerce": false,
+          "type": "WEBSITE",
+          "status": "AWAITING_REVIEW"
+        },
+        {
+          "id": "10",
+          "name": "Eva Smith",
+          "email": "eva.s@example.com",
+          "phoneNumber": "+1-555-666-7777",
+          "profilePic": "https://example.com/eva_s_profile.jpg",
+          "role": "PATIENT",
+          "gender": "Female",
+          "age": 29,
+          "password": "evapass",
+          "location": "Houston",
+          "address": "555 Elm St",
+          "cases": [],
+          "fromEcommerce": false,
+          "type": "WEBSITE",
+          "status": "FINISHED"
         }
       ],
-      "cases": [
+      "cases": []
+    },
+    {
+      "id": "12",
+      "name": "Dr. Mark Wilson",
+      "email": "mark.w@example.com",
+      "phoneNumber": "+1-222-333-4444",
+      "profilePic": "https://example.com/mark_w_profile.jpg",
+      "role": "DOCTOR",
+      "gender": "Male",
+      "age": 45,
+      "password": "doctorpass2",
+      "location": "Los Angeles",
+      "address": "456 Vine St",
+      "isConsultant": false,
+      "patients": [],
+      "cases": []
+    },
+    {
+      "id": "13",
+      "name": "Dr. Laura Smith",
+      "email": "laura.s@example.com",
+      "phoneNumber": "+1-333-444-5555",
+      "profilePic": "https://example.com/laura_s_profile.jpg",
+      "role": "DOCTOR",
+      "gender": "Female",
+      "age": 38,
+      "password": "doctorpass3",
+      "location": "Chicago",
+      "address": "123 Oak St",
+      "isConsultant": true,
+      "patients": [],
+      "cases": []
+    },
+    {
+      "id": "14",
+      "name": "Dr. Kevin Brown",
+      "email": "kevin.b@example.com",
+      "phoneNumber": "+1-444-555-6666",
+      "profilePic": "https://example.com/kevin_b_profile.jpg",
+      "role": "DOCTOR",
+      "gender": "Male",
+      "age": 50,
+      "password": "doctorpass4",
+      "location": "San Francisco",
+      "address": "789 Pine St",
+      "isConsultant": false,
+      "patients": [],
+      "cases": []
+    },
+    {
+      "id": "15",
+      "name": "Dr. Sarah Johnson",
+      "email": "sarah.j@example.com",
+      "phoneNumber": "+1-555-666-7777",
+      "profilePic": "https://example.com/sarah_j_profile.jpg",
+      "role": "DOCTOR",
+      "gender": "Female",
+      "age": 42,
+      "password": "doctorpass5",
+      "location": "Houston",
+      "address": "555 Elm St",
+      "isConsultant": true,
+      "patients": [],
+      "cases": []
+    }
+  ],
+  "cases": [
+    {
+      "id": 1,
+      "patientID": 1,
+      "doctorID": null,
+      "status": "Open",
+      "numOfSteps": 3,
+      "files": [
         {
           "id": 1,
-          "patientID": 1,
-          "doctorID": 1,
-          "status": "Open",
-          "numOfSteps": 2,
-          "files": [
-            {
-              "id": 3,
-              "uri": "https://example.com/case1_file3.pdf"
-            }
-          ]
+          "uri": "https://example.com/case1_file1.pdf"
+        },
+        {
+          "id": 2,
+          "uri": "https://example.com/case1_file2.jpg"
         }
       ]
     },
     {
-      "id": "2",
-      "name": "Dr. Emily Williams",
-      "email": "dr.emily@example.com",
-      "phoneNumber": "+1-555-987-6543",
-      "profilePic": "https://example.com/dr_emily_profile.jpg",
-      "role": "Doctor",
-      "gender": "Female",
-      "age": 35,
-      "password": "docpass123",
-      "location": "San Francisco",
-      "address": "101 Pine St",
-      "isConsultant": false,
-      "patients": [],
-      "cases": []
+      "id": 2,
+      "patientID": 2,
+      "doctorID": null,
+      "status": "Open",
+      "numOfSteps": 2,
+      "files": [
+        {
+          "id": 3,
+          "uri": "https://example.com/case2_file1.pdf"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "patientID": 3,
+      "doctorID": null,
+      "status": "Open",
+      "numOfSteps": 3,
+      "files": []
+    },
+    {
+      "id": 4,
+      "patientID": 4,
+      "doctorID": null,
+      "status": "Open",
+      "numOfSteps": 2,
+      "files": []
+    },
+    {
+      "id": 5,
+      "patientID": 5,
+      "doctorID": null,
+      "status": "Open",
+      "numOfSteps": 1,
+      "files": []
     }
   ]
 }

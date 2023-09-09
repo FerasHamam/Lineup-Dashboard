@@ -15,7 +15,9 @@ import { SearchBar } from "components/navbar/searchBar/SearchBar";
 import { Doctor } from "interfaces/DoctorInterfaces";
 import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
 import { useIntl } from "react-intl";
-import DoctorCard from "./DoctorCard";
+import { Loader } from "views/admin/common/Loader";
+import HumanCard from "../../common/HumanCard";
+import DoctorCard from "../../common/HumanCard";
 enum DoctorsOptions {
   ALL = "All",
   CONSULTANT = "Consultant",
@@ -35,15 +37,16 @@ export default function Doctors(props: { [x: string]: any }) {
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
 
   useEffect(() => {
-    getDoctors().then((res) => {
-      setDoctors(res.data);
-      setLoader(false);
-    });
+    getDoctors()
+      .then((res) => {
+        setDoctors(res.data);
+        setLoader(false);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
     const loweredSearch = search.toLowerCase();
-    console.log(loweredSearch);
     if (doctors) {
       setFilteredDoctors(
         doctors.filter((doctor) => {
@@ -86,23 +89,6 @@ export default function Doctors(props: { [x: string]: any }) {
     setSearch("");
   };
 
-  const Loader = useMemo<JSX.Element>(() => {
-    if (loader) {
-      return (
-        <>
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="navy.500"
-            size="xl"
-          />
-        </>
-      );
-    }
-    return <></>;
-  }, [loader]);
-
   return (
     <>
       <Card mb={{ base: "0px", "2xl": "20px" }} {...rest}>
@@ -132,16 +118,17 @@ export default function Doctors(props: { [x: string]: any }) {
               me="5"
               mt="10px"
               mb="10px"
+              borderRadius="30px"
               value={selectedDoctorOption}
               onChange={onChangeDoctorOptionHandler}
             >
-              <option value={DoctorsOptions.ALL}>{DoctorsOptions.ALL}</option>
-              <option value={DoctorsOptions.CONSULTANT}>
-                {DoctorsOptions.CONSULTANT}
-              </option>
-              <option value={DoctorsOptions.NON_CONSULTANT}>
-                {DoctorsOptions.NON_CONSULTANT}
-              </option>
+              {Object.values(DoctorsOptions).map((key) => {
+                return (
+                  <option value={key} className="bg-green-200 text-green-700">
+                    {key}
+                  </option>
+                );
+              })}
             </Select>
             <SearchBar
               w={"50%"}
@@ -155,6 +142,7 @@ export default function Doctors(props: { [x: string]: any }) {
         </List>
         <hr />
         <List
+          mt={5}
           height={"80vh"}
           overflowY={"scroll"}
           padding={"1rem"}
@@ -193,7 +181,7 @@ export default function Doctors(props: { [x: string]: any }) {
               </Text>
             </>
           )}
-          {Loader}
+          {loader && <Loader />}
           <Grid
             templateColumns={{
               md: "repeat(3, 1fr)",
@@ -207,7 +195,7 @@ export default function Doctors(props: { [x: string]: any }) {
             {!loader &&
               doctors &&
               filteredDoctors.map((doctor, index) => {
-                return <DoctorCard doctor={doctor} />;
+                return <HumanCard human={doctor} />;
               })}
           </Grid>
         </List>

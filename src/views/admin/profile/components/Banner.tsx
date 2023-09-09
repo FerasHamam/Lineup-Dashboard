@@ -9,7 +9,7 @@ export default function Banner(props: {
   name: string;
   job: string;
   cases: number | string;
-  patients: number | string;
+  patients?: number | string;
   [x: string]: any;
 }) {
   const { banner, avatar, name, job, cases, patients, ...rest } = props;
@@ -61,14 +61,16 @@ export default function Banner(props: {
           justifyContent={"space-evenly"}
           alignItems={"end"}
         >
-          <Flex alignItems="center" flexDirection="column">
-            <Text color={textColorPrimary} fontSize="2xl" fontWeight="700">
-              {patients}
-            </Text>
-            <Text color={textColorSecondary} fontSize="sm" fontWeight="400">
-              {intl.formatMessage({ id: "patients" })}
-            </Text>
-          </Flex>
+          {patients !== undefined && (
+            <Flex alignItems="center" flexDirection="column">
+              <Text color={textColorPrimary} fontSize="2xl" fontWeight="700">
+                {patients}
+              </Text>
+              <Text color={textColorSecondary} fontSize="sm" fontWeight="400">
+                {intl.formatMessage({ id: "patients" })}
+              </Text>
+            </Flex>
+          )}
           <Flex alignItems="center" flexDirection="column">
             <Text color={textColorPrimary} fontSize="2xl" fontWeight="700">
               {cases}

@@ -14,6 +14,8 @@ export interface Doctor {
   location: string;
   address: string;
   isConsultant: boolean;
+  status: string;
+  type: string;
   patients: Patient[];
   cases: Case[];
 }

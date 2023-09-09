@@ -28,27 +28,26 @@ import Banner from "views/admin/profile/components/Banner";
 
 // Assets
 import banner from "assets/img/auth/banner.png";
-import { Doctor } from "interfaces/DoctorInterfaces";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getDoctor } from "apis/getDoctor.api";
 import ContactInfo from "views/admin/common/ContactInfo";
 import GeneralInfo from "views/admin/common/GeneralInfo";
-import PatientsUnderDoctor from "views/admin/common/PatientsUnderDoctor";
+import { Patient } from "interfaces/PatientInterfaces";
+import { getPatient } from "apis/getPatient.api";
 
-export const route = "/admin/doctor/doctorProfile";
+export const route = "/admin/patient/patientProfile";
 
-export default function DoctorProfile() {
-  const [doctor, setDoctor] = useState<Doctor>(undefined);
+export default function PatientProfile() {
+  const [patient, setPatient] = useState<Patient>(undefined);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     if (id)
-      getDoctor(id).then((res) => {
-        setDoctor(res.data);
+      getPatient(id).then((res) => {
+        setPatient(res.data);
       });
   }, [id]);
-  if (!doctor) return null;
+  if (!patient) return null;
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
@@ -65,39 +64,25 @@ export default function DoctorProfile() {
       >
         <Banner
           banner={banner}
-          avatar={doctor?.profilePic}
-          name={doctor?.name}
-          job={doctor?.role}
-          patients={doctor?.patients.length}
-          cases={doctor?.cases.length}
+          avatar={patient?.profilePic}
+          name={patient?.name}
+          job={patient?.role}
+          cases={patient?.cases.length}
         />
         <GeneralInfo
-          age={doctor.age}
-          gender={doctor.gender}
-          isConsultant={doctor.isConsultant}
-          status={doctor.status}
-          type={doctor.type}
+          age={patient.age}
+          gender={patient.gender}
+          status={patient.status}
+          type={patient.type}
         />
         <ContactInfo
-          email={doctor.email}
-          location={doctor.location}
-          address={doctor.address}
-          phone={doctor.phoneNumber}
+          email={patient.email}
+          location={patient.location}
+          address={patient.address}
+          phone={patient.phoneNumber}
         />
       </Grid>
-      <Grid
-        templateColumns={{
-          base: "1fr",
-          lg: "1fr 1fr",
-        }}
-        templateRows={{
-          base: "repeat(3, 1fr)",
-          lg: "1fr",
-        }}
-        gap={{ base: "20px", xl: "20px" }}
-      >
-        <PatientsUnderDoctor name={doctor.name} patients={doctor.patients} />
-      </Grid>
+      {/* <Avatars name={patient.name} /> */}
     </Box>
   );
 }

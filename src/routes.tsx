@@ -19,6 +19,9 @@ import DoctorsOverview from "views/admin/doctor";
 import PatientsOverview from "views/admin/patient";
 import DoctorProfile from "views/admin/doctor/components/DoctorProfile";
 import { route as DoctorProfileRoute } from "./views/admin/doctor/components/DoctorProfile";
+import PatientProfile, {
+  route as PateintProfileRoute,
+} from "./views/admin/patient/components/PatientProfile";
 
 const routes = [
   {
@@ -47,7 +50,7 @@ const routes = [
       <Icon as={MdHealthAndSafety} width="20px" height="20px" color="inherit" />
     ),
     isMain: true,
-    path: `/admin/data-tables`,
+    path: `/admin/doctors`,
     component: DoctorsOverview,
   },
   {
@@ -87,6 +90,16 @@ const routes = [
       <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
     ),
     component: DoctorProfile,
+  },
+  {
+    name: "Patient Profile",
+    layout: "/admin",
+    path: `${PateintProfileRoute}/:id`,
+    isMain: false,
+    icon: (
+      <Icon as={MdOutlineLogin} width="20px" height="20px" color="inherit" />
+    ),
+    component: PatientProfile,
   },
 ];
 
